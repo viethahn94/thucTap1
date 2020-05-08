@@ -9,24 +9,22 @@ class CustomersController extends Controller
 {
     public function list()
     {
-        $customers = Customer::all();
+        $activeCustomers = Customer::active()->get();
+        $inactiveCustomers = Customer::inactive()->get();
 
-
-        return view('internals.customers',[
-            'customers' => $customers,
-        ]);
+        return view('internals.customers', compact('activeCustomers','inactiveCustomers'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $data = request()->validate([
-            'name' => 'required|min:3'
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7|max:20',
+            'active' => 'required',
         ]);
+        Customer::create($data);
 
-
-        $customer = new Customer();
-        $customer->name = request('name');
-        $customer->save();
 
         return back();
     }

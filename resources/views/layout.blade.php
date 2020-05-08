@@ -4,22 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>My First Project</title>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="contact">Contact Us</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="about">About Us</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="customers">Customers List</a>
-        </li>
+    <title>@yield('title','Learning Laravel 5.8')</title>
 
-    </ul>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
@@ -29,6 +15,8 @@
 
 
 <div class="container">
+    @include('nav')
+
     @yield('content')
 </div>
 
