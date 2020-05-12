@@ -11,9 +11,6 @@
 </head>
 <body>
 
-
-
-
 <div class="container">
     @include('nav')
 

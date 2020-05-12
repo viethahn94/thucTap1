@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Company extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class Company extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('companies', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('phone');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class Company extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('companies');
     }
 }

@@ -8,13 +8,37 @@ class Customer extends Model
 {
     protected $guarded = [];
 
-    public function scopeActive($query)
+    protected $attributes = [
+        'active' => 1
+    ];
+
+    public function getActiveAttribute($attribute)
     {
-        return $query->where('active',1);
+        return $this->activeOptions()[$attribute];
     }
 
-    public function scopeInactive($query)
+//    public function scopeActive($query)
+//    {
+//        return $query->where('active',1);
+//    }
+//
+//    public function scopeInactive($query)
+//    {
+//        return $query->where('active',0);
+//    }
+
+    public function company()
     {
-        return $query->where('active',0);
+        return $this->belongsTo(Company::class);
+    }
+
+    public function activeOptions()
+    {
+        return [
+            1=>'Active',
+            0=>'Inactive',
+            2=>'In-progress'
+
+        ];
     }
 }
