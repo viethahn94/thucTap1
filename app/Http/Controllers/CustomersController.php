@@ -18,7 +18,6 @@ class CustomersController extends Controller
 
     public function store(Request $request)
     {
-
         Customer::create($this->validateRequest());
         return redirect('/customers');
     }
@@ -47,9 +46,15 @@ class CustomersController extends Controller
         return redirect('customers/' . $customer->id);
     }
 
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+        return redirect('customers');
+    }
+
     private function validateRequest()
     {
-        $data = request()->validate([
+        return request()->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7|max:20',
@@ -57,4 +62,6 @@ class CustomersController extends Controller
             'company_id' => 'required',
         ]);
     }
+
+
 }

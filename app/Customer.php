@@ -17,15 +17,15 @@ class Customer extends Model
         return $this->activeOptions()[$attribute];
     }
 
-//    public function scopeActive($query)
-//    {
-//        return $query->where('active',1);
-//    }
-//
-//    public function scopeInactive($query)
-//    {
-//        return $query->where('active',0);
-//    }
+    public function scopeActive($query)
+    {
+        return $query->where('active',1);
+    }
+
+    public function scopeInactive($query)
+    {
+        return $query->where('active',0);
+    }
 
     public function company()
     {
@@ -38,7 +38,6 @@ class Customer extends Model
             1=>'Active',
             0=>'Inactive',
             2=>'In-progress'
-
         ];
     }
 }
